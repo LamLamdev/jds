@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://unpkg.com/lottie-web@5.12.0/build/player/lottie.min.js"></script>
+
+    
+
+    <style>
+        .blinking-cursor::after {
+          content: "_";
+          animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+          50% {
+            opacity: 0;
+          }
+        }
+        </style>
+        
+    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1024" />
+  <title>$JDS - Jeet Defense System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .expand-height {
+      height: 830px; /* Or whatever height fits the scanner */
+    }
+  </style>
+
+  
+
+<style>
+    @keyframes loading-glow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+  
+    .animate-loading-glow {
+      background-size: 200% 100%;
+      animation: loading-glow 1.5s ease-out forwards;
+      box-shadow: 0 0 10px #9fff6f;
+    }
+  </style>
+  
+
+  
+  <style>
+    @keyframes stripe-move {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 40px 0;
+      }
+    }
+  
+    .progress-stripes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(156, 156, 151, 0.266) 50%,
+        rgba(255, 255, 255, 0.045) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 40px 40px;
+      animation: stripe-move 1s linear infinite;
+      pointer-events: none;
+    }
+  </style>
+  
+  
+
+<style>
+    .pulse-button {
+  background-color: transparent; /* Tailwind's yellow-400 */
+  border: 2px solid #fef08a; /* yellow-200 border */
+  box-shadow: 0 0 2px #facc15;
+  animation: yellowPulse 1.3s infinite;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+@keyframes yellowPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 3px #facc15;
+  }
+  40% {
+    transform: scale(1.012);
+    box-shadow: 0 0 10px #ff0000, 0 0 30px #facc15;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 3px #facc15;
+  }
+}
+</style>
+  
+  
+
+  <style>
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      background-color: rgb(0, 0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow-y: auto;
+    }
+
+    .fixed-container {
+      width: 1024px;
+      min-height: 100vh;
+      background-image: url('bkrnd.png');
+      background-size: auto;
+      background-repeat: repeat-y;
+      background-position: center;
+      color: #a3ff9b;
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+     
+    }
+    
+    .fixed-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.43); /* Adjust opacity here */
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    canvas.matrix {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: calc((100vw - 1024px) / 2);
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+        opacity: 0.8;
+        background-color: #031b01;
+    }
+
+    #matrixLeft {
+      left: 0;
+    }
+
+    #matrixRight {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Matrix rain canvases -->
+  <canvas id="matrixLeft" class="matrix"></canvas>
+  <canvas id="matrixRight" class="matrix"></canvas>
+
+  <!-- Main Container -->
+  <div class="fixed-container">
+    <div class="relative z-10">
+      <!-- Header -->
+      <!-- Header -->
+<div class="relative flex justify-between items-center p-6 border-b border-green-700">
+    <!-- Left: Logo -->
+    <div class="flex items-center gap-4 z-10">
+      <img src="jd.png" alt="Token PFP" class="w-38 h-36" />
+    </div>
+  
+    <!-- Center: Title and subtitle (absolutely centered) -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+        <div class="relative pt-6"></div>
+      <h1 class="text-6xl font-bold text-[#89ab74]">JEET DEFENSE SYSTEM</h1>
+      <p class="text-1xl tracking-widest text-green-400 mt-1">DEPLOY THE DEFENSE STOP THE JEET.</p>
+    </div>
+  
+    <!-- Right: Links -->
+    <div class="flex gap-6 text-green-400 mr-10 text-sm z-10">
+      
+      <a href="https://x.com/i/communities/1945583768862900333" target="_blank" class="hover:underline">SOCIALS</a>
+    </div>
+  </div>
+  
+
+    <!-- Jeet Defense System Panels -->
+    <div class="grid grid-cols-2 gap-6 p-6 items-start">
+   
+    <!-- Jeet Defense Protocol -->
+    <div id="jeet-protocol"
+     class="border border-green-800 text-[#b6ffb4] p-6 rounded relative shadow-lg"
+     style="background-color: rgba(3, 27, 1, 0.1); font-family: 'Share Tech Mono', monospace;">
+
+      <h2 class="text-4xl font-extrabold tracking-wide mb-6 leading-none">THE JEET DEFENSE<br>PROTOCOL</h2>
+      <ul class="space-y-4 text-xl font-semibold">
+        <li class="flex items-start gap-2"><span class="text-yellow-400">▶</span> SCANS FOR SELLING PRESSURE</li>
+        <li class="flex items-start gap-2"><span class="text-yellow-400">▶</span> ACTIVATES COPING COUNTERMEASURES</li>
+        <li class="flex items-start gap-2"><span class="text-yellow-400">▶</span> REINFORCES PSYCHOLOGICAL SUPPORT</li>
+      </ul>
+      <button id="deployButton" class="pulse-button w-50 px-6 py-4 text-yellow-500 text-lg mt-8 font-bold rounded uppercase tracking-wide 
+  hover:scale-110 hover:shadow-md transition-all duration-350 ease-in-out">
+  DEPLOY COUNTERMEASURE
+</button>
+
+<hr class="my-6 border-t border-green-500" />
+
+
+      </button>
+      
+      <!-- CONTRACT ADDRESS BOX -->
+      <div class="mt-6 border border-green-500 p-4 rounded-md text-green-300 w-full max-w-8xl mx-auto bg-[#0e1b12] shadow-md">
+
+    <div class="flex justify-between items-center flex-wrap gap-4">
+      <div>
+        <div class="text-green-400 text-xs tracking-widest mb-1">CONTRACT ADDRESS</div>
+        <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+            <div id="contractText" class="text-green-300 font-mono text-sm break-all select-text">
+              69ABCD1234EF5678909876543210ABCDEF12345678
+            </div>
+            <button
+              onclick="copyContract()"
+              class="px-3 py-1 border border-green-400 text-green-300 text-xs rounded hover:bg-green-800 transition-all whitespace-nowrap"
+            >
+              COPY
+            </button>
+          </div>
+          
+      </div>
+      
+        
+      
+        
+      </button>
+    </div>
+  </div>
+  
+      
+      
+    </div>
+
+    
+
+    <!-- DEFENSE MANUAL PANEL -->
+    <div id="defense-manual"
+    class="mt-6 border border-green-600 text-[#aee88a] px-4 pt-2 pb-3 w-[420px] h-[260px] shadow-lg"
+    style="background-color: rgba(3, 27, 1, 0.5); font-family: 'Share Tech Mono', monospace;">
+
+
+
+    <div class="flex justify-between items-center text-xs text-green-300 tracking-widest mb-2 border-b border-green-700 pb-1">
+      <span>DOCUMENT 04</span>
+      <span class="text-xl leading-none">×</span>
+    </div>
+  
+    <h2 class="text-4xl font-extrabold leading-tight mb-3 tracking-tight">THE DEFENSE<br>MANUAL</h2>
+
+    <hr class="border-t border-green-700 my-2" />
+
+  
+    <div class="flex justify-between items-center text-green-300 text-sm uppercase mb-4">
+      <span class="tracking-widest">Classified</span>
+      <span class="border border-green-500 px-2 py-0.5 text-[#aee88a]">#758380</span>
+    </div>
+  
+    <!-- Bar Container -->
+<div class="w-full h-6 border border-green-400 rounded overflow-hidden relative bg-black">
+    <!-- Filled Bar -->
+   <!-- Progress Container -->
+<!-- Progress Container -->
+<div class="w-full h-6 border border-green-400 rounded overflow-hidden bg-black relative mb-4">
+    <div id="progressBar"
+         class="h-full w-0 bg-gradient-to-r from-[#286303] to-[#787a02] transition-all duration-[1500ms] relative">
+      <div class="progress-stripes pointer-events-none"></div>
+    </div>
+  </div>
+  
+  
+  
+  </div>
+
+  
+  
+    
+      <div id="scanner" class="hidden opacity-0 transition-opacity duration-500">
+        
+        <!-- JEET STATS (initially hidden) -->
+
+
+<!-- ANALYZING LOADING -->
+<div id="jeetLoading" class="hidden opacity-0 transition-opacity duration-700 mt-6 text-green-300 text-lg flex flex-col items-center">
+    <div class="w-36 h-36 overflow-hidden flex items-center justify-center">
+      <div id="radarAnimation" class="scale-75"></div>
+    </div>
+    <p id="analyzingText" class="mt-2 text-center tracking-wider animate-pulse">Analyzing...</p>
+  </div>
+  
+  
+  
+
+
+<!-- JEET STATS TERMINAL STYLE -->
+<div id="jeetStats" class="hidden opacity-0 transition-opacity duration-700 mt-6">
+    <h3 class="text-2xl font-bold mb-2 text-green-300">Jeet Analysis Report</h3>
+    <div id="terminalOutput" class="bg-black text-green-400 text-sm p-3 border border-green-700 rounded font-mono leading-relaxed break-words whitespace-pre-wrap h-48 overflow-y-auto" style="font-family: 'Share Tech Mono', monospace;">
+        <div class="mb-2 text-green-500">$ root@defense:~$</div>
+        <!-- typed lines will append below -->
+      </div>
+      
+  </div>
+  
+  
+        <h3 class="text-2xl font-bold mb-2 mt-8 text-green-300">Jeet Probability Scanner</h3>
+        <input id="walletInput" type="text" placeholder="Paste your wallet address..." class="w-full p-2 mb-2 bg-black text-green-200 border border-green-600 rounded" />
+        <p id="walletError" class="text-red-500 text-sm mb-2 hidden">Invalid wallet address</p>
+        <button class="bg-green-700 hover:bg-green-600 text-black font-bold py-2 px-4 w-full rounded">
+          SCAN FOR JEET TENDENCIES
+        </button>
+        
+      </div>      
+    </div>
+
+    
+  
+  </div>
+  
+  
+
+  <!-- Matrix JS -->
+  <script>
+    function startMatrixRain(canvasId) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext("2d");
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
+
+      const letters = "01";
+      const fontSize = 44;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      function draw() {
+  // Draw a semi-transparent layer over the canvas to create fading trails
+  ctx.fillStyle = "rgba(2, 27, 1, 0.045)"; // transparent version of #010d00
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+  ctx.fillStyle = "#0c4a0d"; // matrix text color
+  ctx.font = fontSize + "px 'Share Tech Mono'";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+
+    ctx.fillText(text, x, y);
+
+    // Reset drop randomly
+    if (y > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+
+      setInterval(draw, 33);
+    }
+
+    startMatrixRain("matrixLeft");
+    startMatrixRain("matrixRight");
+  </script>
+
+
+<script src="defense.js"></script>
+
+<audio id="keystroke" src="type_trimmed.mp3" preload="auto"></audio>
+
+
+</body>
+</html>
+
+<style>
+    .expand-height {
+      height: 430px; /* Or whatever height fits the scanner */
+    }
+  </style>
+  
