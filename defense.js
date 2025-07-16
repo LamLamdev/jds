@@ -180,7 +180,7 @@ shareBtn.addEventListener("click", () => {
       
       
   
-      const tweetText = `JEET DIAGNOSIS JUST CAME IN 🧪\n\n${emojiLines.join("\n")}\n\nGet diagnosed at: jeetdefense.com`;
+      const tweetText = `JEET DIAGNOSIS JUST CAME IN 🧪\n\n${emojiLines.join("\n")}\n\nGet diagnosed at: jeetdefense.xyz`;
 
     const tweet = encodeURIComponent(tweetText);
     const url = `https://twitter.com/intent/tweet?text=${tweet}`;
